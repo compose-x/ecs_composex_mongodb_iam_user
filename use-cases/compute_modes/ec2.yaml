@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  proxy:
+    labels:
+      ecs.compute.platform: EC2
+
+  backend:
+    labels:
+      ecs.compute.platform: EC2
+
+  etl:
+    labels:
+      ecs.compute.platform: EC2

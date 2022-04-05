@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  proxy:
+    labels:
+      ecs.compute.platform: EC2
+
+  backend:
+    x-ecs:
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE_SPOT
+          Base: 4
+          Weight: 8
+
+  etl:
+    deploy:
+      labels:
+        ecs.compute.platform: EXTERNAL

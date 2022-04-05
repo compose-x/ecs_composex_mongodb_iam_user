@@ -1,0 +1,52 @@
+version: "3.8"
+
+networks:
+  internal:
+  public:
+  storage:
+
+volumes:
+  static:
+  data:
+
+services:
+  proxy:
+    image: nginx
+    ports:
+      - published: 8090
+        target: 80
+    volumes:
+      - static:/var/html/static
+    deploy:
+      resources:
+        limits:
+          cpus: 0.2
+          memory: "256M"
+        reservations:
+          cpus: 0.1
+          memory: "128M"
+      replicas: 2
+
+  backend:
+    image: nginx
+    ports:
+      - target: 80
+    volumes:
+      - /path/to/temp
+    deploy:
+      replicas: 2
+
+  etl:
+    image: nginx
+    volumes:
+      - data:/data
+    networks:
+      storage:
+    deploy:
+      resources:
+        limits:
+          cpus: 2
+          memory: "2G"
+        reservations:
+          cpus: 1
+          memory: "1G"

@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  proxy:
+    labels:
+      ecs.compute.platform: EXTERNAL
+
+  backend:
+    labels:
+      ecs.compute.platform: EXTERNAL
+
+  etl:
+    labels:
+      ecs.compute.platform: EXTERNAL

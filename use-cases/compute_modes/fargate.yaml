@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  proxy:
+    labels:
+      ecs.compute.platform: FARGATE
+
+  backend:
+    x-ecs:
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE_SPOT
+          Base: 4
+          Weight: 8
+
+
+  etl:
+    x-ecs:
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Base: 1
+          Weight: 2
+        - CapacityProvider: FARGATE_SPOT
+          Base: 4
+          Weight: 8

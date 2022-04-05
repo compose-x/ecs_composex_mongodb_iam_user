@@ -1,0 +1,36 @@
+version: "3.8"
+
+x-mongodb_iam_user:
+  Resource01:
+    MacroParameters:
+      PrivateKey:
+        SecretName: mongodb/api/keys
+        JsonKey: PrivateKey
+      PublicKey:
+        SecretName: mongodb/api/keys
+        JsonKey: PublicKey
+    Properties:
+      ProjectId: 12345abcdefgh
+      DatabaseAccess:
+        cluster01:
+          RoleName: readWrite
+          DatabaseName: testing
+    Services:
+      backend:
+
+x-sqs:
+  queue01:
+    Properties: {}
+
+services:
+  proxy:
+    x-scaling:
+      Range: 1-4
+
+  backend:
+    x-scaling:
+      Range: 1-4
+
+  etl:
+    x-scaling:
+      Range: 0-12
