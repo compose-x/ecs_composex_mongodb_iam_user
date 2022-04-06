@@ -22,6 +22,9 @@ x-sqs:
   queue01:
     Properties: {}
 
+x-tags:
+  Name: testing-mongodb-iam-user
+
 services:
   proxy:
     x-scaling:
