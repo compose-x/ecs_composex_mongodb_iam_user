@@ -17,7 +17,7 @@ readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-ecs_composex = "0.18.0b3"
+ecs_composex = "^0.18.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
