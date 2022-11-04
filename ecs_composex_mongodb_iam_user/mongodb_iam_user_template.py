@@ -1,4 +1,5 @@
-"""Main module."""
+#  SPDX-License-Identifier: MPL-2.0
+#  Copyright 2020-2022 John Mille <john@compose-x.io>
 
 from __future__ import annotations
 
@@ -13,7 +14,7 @@ if TYPE_CHECKING:
 from copy import deepcopy
 
 from compose_x_common.compose_x_common import keyisset, set_else_none
-from ecs_composex.common import add_parameters, add_resource
+from ecs_composex.common.troposphere_tools import add_parameters, add_resource
 from ecs_composex.ecs.task_iam.task_role import IAM_ROLE_ARN
 from ecs_composex.resources_import import import_record_properties
 from troposphere import Ref

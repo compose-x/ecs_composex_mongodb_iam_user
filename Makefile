@@ -51,21 +51,21 @@ lint: ## check style with flake8
 	flake8 ecs_composex_mongodb_iam_user tests
 
 test: ## run tests quickly with the default Python
-	pytest -svx tests/
+	poetry run pytest -svx tests/
 
 test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source ecs_composex_mongodb_iam_user -m pytest
-	coverage report -m
-	coverage html
+	poetry run coverage run --source ecs_composex_mongodb_iam_user -m pytest
+	poetry run coverage report -m
+	poetry run coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/ecs_composex_mongodb_iam_user.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ ecs_composex_mongodb_iam_user
+	poetry run sphinx-apidoc -o docs/ ecs_composex_mongodb_iam_user
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
@@ -74,8 +74,8 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 conform	: ## Conform to a standard of coding syntax
-	isort --profile black ecs_composex_mongodb_iam_user
-	black ecs_composex_mongodb_iam_user tests
+	isort --profile black ecs_composex_mongodb_iam_user || poetry run isort --profile black ecs_composex_mongodb_iam_user
+	black ecs_composex_mongodb_iam_user tests || poetry run black ecs_composex_mongodb_iam_user tests
 	find ecs_composex_mongodb_iam_user -name "*.json" -type f  -exec sed -i '1s/^\xEF\xBB\xBF//' {} +
 
 dist: clean ## builds source and wheel package
@@ -83,4 +83,4 @@ dist: clean ## builds source and wheel package
 	ls -l dist
 
 install: clean conform ## install the package to the active Python's site-packages
-	pip install . --use-pep517 #--use-feature=in-tree-build
+	pip install .

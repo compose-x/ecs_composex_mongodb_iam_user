@@ -1,4 +1,5 @@
-"""Main module."""
+#  SPDX-License-Identifier: MPL-2.0
+#  Copyright 2020-2022 John Mille <john@compose-x.io>
 
 from __future__ import annotations
 
@@ -8,8 +9,9 @@ if TYPE_CHECKING:
     from ecs_composex.common.settings import ComposeXSettings
     from ecs_composex.mods_manager import XResourceModule
 
-from ecs_composex.common import LOG, build_template
+from ecs_composex.common.logging import LOG
 from ecs_composex.common.stacks import ComposeXStack
+from ecs_composex.common.troposphere_tools import build_template
 from ecs_composex.compose.x_resources.helpers import (
     set_lookup_resources,
     set_new_resources,

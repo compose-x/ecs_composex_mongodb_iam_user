@@ -17,14 +17,13 @@ readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-ecs_composex = "^0.18.0"
+ecs_composex = "0.23.0.a0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
 isort = "^5.9.3"
-flake8 = "^3.9.2"
-coverage = "^5.5"
-pytest = "^6.2.4"
+coverage = "^6.5"
+pytest = "^7.2"
 behave = "^1.2.6"
 pre-commit = "^2.14.0"
 tbump = "^6.7.0"
